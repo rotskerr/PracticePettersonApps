@@ -1,0 +1,22 @@
+.LoginBox {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 5em;
+    padding: 3em;
+    border-radius: 5%;
+    box-shadow: 5px 5px 10px #ccc;
+    transition: .5s;
+
+}
+
+.LoginBox:hover{
+    box-shadow: 10px 10px 20px #ccc;
+}
+
+.TypoText{
+    padding: 1em;
+}
