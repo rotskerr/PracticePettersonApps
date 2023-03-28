@@ -1,0 +1,35 @@
+
+
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 14vh;
+    margin: auto;
+    background-color: #333232;
+    color: #B8B7B7;
+}
+.nav-links{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    
+}
+
+li{
+    cursor: pointer;
+}
+
+a{
+    color: #B8B7B7;
+    text-decoration: none;
+}
+
+button{
+    color: #B8B7B7;
+    background-color: #333233;
+    border-radius: 5%;
+    border: 1px;
+}
