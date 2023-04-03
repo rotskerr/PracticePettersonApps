@@ -72,7 +72,7 @@ class TaskList extends React.Component {
             <div className="container">
               <div className="drag_column">
                 <div className="drag_row">
-                  <h4>New Orders</h4>
+                  <h4 className="task_card">New Orders</h4>
                   {newOrder.map((task) => (
                     <div
                       className="card"
@@ -109,7 +109,7 @@ class TaskList extends React.Component {
             <div className="container">
               <div className="drag_column">
                 <div className="drag_row">
-                  <h4>In Progress</h4>
+                  <h4 className="task_card">In Progress</h4>
                   {pending.map((task) => (
                     <div
                       className="card"
@@ -147,7 +147,7 @@ class TaskList extends React.Component {
             <div className="container">
               <div className="drag_column">
                 <div className="drag_row">
-                  <h4>Completed</h4>
+                  <h4 className="task_card">Completed</h4>
                   {done.map((task) => (
                     <div
                       className="card"

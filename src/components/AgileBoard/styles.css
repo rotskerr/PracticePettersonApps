@@ -61,7 +61,7 @@
   height: 100vh;
   padding: 40px 0px;
 }
-h4 {
+.task_card {
   font-family: sans-serif;
   font-size: 12px;
   text-transform: uppercase;
