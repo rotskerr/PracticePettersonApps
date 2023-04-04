@@ -1,13 +1,14 @@
 import { Button, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import "./Auth.css";
-import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -33,6 +34,10 @@ const Login = () => {
       )
       .then((result) => {
         console.log(result);
+        // зберігаємо токен користувача в localStorage
+        localStorage.setItem("token", result.data.token);
+        // переходимо на домашню сторінку
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -70,7 +75,9 @@ const Login = () => {
         >
           Login
         </Button>
-        <Button sx={{ marginTop: 3, color: "#B8B7B7" }}><Link to="/register">Signup</Link></Button>
+        <Button sx={{ marginTop: 3, color: "#B8B7B7" }}>
+          <Link to="/register">Signup</Link>
+        </Button>
       </form>
     </div>
   );
