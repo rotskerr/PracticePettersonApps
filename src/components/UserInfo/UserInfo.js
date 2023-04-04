@@ -1,14 +1,18 @@
-import { Button } from '@mui/material'
-import React from 'react'
+import { Button } from "@mui/material";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const UserInfo = () => {
-  return (
-    <div> 
-        UserInfo     
-        
-        <Button>Log Out</Button>
-    </div>
-  )
-}
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+  };
 
-export default UserInfo
+  return (
+    <div>
+      user info
+     <Button><Link to="/login" onClick={handleLogout}>Log Out</Link></Button> 
+    </div>
+  );
+};
+
+export default UserInfo;

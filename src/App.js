@@ -1,5 +1,4 @@
 import React from "react";
-// import Auth from "./components/Auth/Auth.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import  DashBoard from "./components/DashBoard/DashBoard.js";
 import AgileBoard from "./components/AgileBoard/AgileBoard.js";

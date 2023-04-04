@@ -1,6 +1,10 @@
-import { Button } from "@mui/material";
-import React, { useState } from "react";
+import { Button, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import React from "react";
+import "./Auth.css";
+import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +15,6 @@ const Login = () => {
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
-
 
   const handleApi = () => {
     console.log({ email, password });
@@ -24,8 +27,8 @@ const Login = () => {
         },
         {
           headers: {
-            "Accept":  'application/json',
-            "Content-Type" : 'application/json' 
+            Accept: "application/json",
+            "Content-Type": "application/json",
           },
         }
       )
@@ -37,12 +40,39 @@ const Login = () => {
       });
   };
   return (
-    <div>   
-      email: <input value={email} onChange={handleEmail} type="text" />
-      <br />
-      password: <input value={password} onChange={handlePassword} type="text" />
-      <br />
-      <Button onClick={handleApi}>Login</Button>
+    <div>
+      <form className="LoginBox">
+        <Typography variant="h4" padding={3}>
+          Login
+        </Typography>
+        <TextField
+          value={email}
+          onChange={handleEmail}
+          sx={{ input: { color: "#B8B7B7" } }}
+          type={"text"}
+          variant="outlined"
+          placeholder="email"
+          margin="normal"
+        />
+        <TextField
+          value={password}
+          onChange={handlePassword}
+          sx={{ input: { color: "#B8B7B7" } }}
+          type={"password"}
+          variant="outlined"
+          placeholder="password"
+          margin="normal"
+        />
+        <Button
+          onClick={handleApi}
+          sx={{ marginTop: 3 }}
+          variant="contained"
+          color="success"
+        >
+          Login
+        </Button>
+        <Button sx={{ marginTop: 3, color: "#B8B7B7" }}><Link to="/register">Signup</Link></Button>
+      </form>
     </div>
   );
 };

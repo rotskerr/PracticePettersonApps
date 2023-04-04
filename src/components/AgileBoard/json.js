@@ -40,20 +40,6 @@ export const TASKS = [
     newOrder: true,
     done: false
   },
-  {
-    id: 6,
-    status: "Completed",
-    image: IconBox,
-    time: "20 hrs",
-    days: "11 days left",
-    done: true
-  },
-  {
-    id: 5,
-    status: "Delivered",
-    image: IconBox,
-    time: "2 hrs",
-    days: "1 day left",
-    done: false
-  }
+
+
 ];
