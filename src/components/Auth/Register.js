@@ -1,8 +1,4 @@
 import { Button, TextField, Typography } from "@mui/material";
-<<<<<<< HEAD
-=======
-import { Box } from "@mui/system";
->>>>>>> ebeca1df913ff485a403a37ce5406b8e906a1237
 import React from "react";
 import "./Auth.css";
 import { useState } from "react";
