@@ -23,19 +23,19 @@ const Nav = () => {
     <div>
       <nav>
         <Link to="/">
-          <img src={logo} alt="logo" />
+          <img src={logo}  alt="logo" />
         </Link>
         <ul className="nav-links">
           <Link to="/dashboard">
-            <li>Dash board</li>
+            <li>Dashboard</li>
           </Link>
           <Link to="/agileboard">
-            <li>agile board</li>
+            <li>Agileboard</li>
           </Link>
           <li>
             <div>
-              <button aria-describedby={id} type="button" onClick={handleClick}>
-                user info
+              <button className="UserInfoBtn" aria-describedby={id} type="button" onClick={handleClick}>
+                User Info
               </button>
               <Popper id={id} open={open} anchorEl={anchorEl} transition>
                 {({ TransitionProps }) => (

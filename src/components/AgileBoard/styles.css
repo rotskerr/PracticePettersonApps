@@ -7,10 +7,12 @@
   padding: 15px;
   background: #aca9a9;
   box-shadow: 3px 1px 12px #0000001a;
-  border-radius: 4px;
+  border-radius: 14px;
   margin-bottom: 15px;
   cursor: move;
   color: #fff;
+  font-size: 20px;
+
 }
 .img img {
   width: 40px;
@@ -19,7 +21,7 @@
 .status,
 .days,
 .time {
-  font-size: 14px;
+  font-size: 18px;
   margin-bottom: 7px;
 }
 .card_right {
@@ -29,12 +31,14 @@
   flex-wrap: wrap;
   flex-direction: column;
   align-items: flex-end;
+  border-radius: 15px;
 }
 .order .status {
   background: #fff1de;
   color: #494949;
   padding: 3px 10px;
   border-radius: 18px;
+
 }
 .done .status {
   background: #c8ebdd;
@@ -63,7 +67,7 @@
 }
 .task_card {
   font-family: sans-serif;
-  font-size: 12px;
+  font-size: 19px;
   text-transform: uppercase;
   margin-top: 0px;
   color: #416183;
@@ -81,16 +85,20 @@
   float: left;
   display: flex;
   padding: 30px;
+
 }
 .drag_row {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+
 }
 .small-box {
   width: 22%;
   background: #878888;
   height: max-content;
+  border-radius: 15px;
+
 }
 
 .task {
@@ -101,4 +109,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 15px;
 }

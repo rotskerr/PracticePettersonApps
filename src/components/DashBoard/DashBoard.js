@@ -5,10 +5,11 @@ import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import "./style.css";
+import NewTask from "../NewTask/NewTask";
+import NewProject from "../NewProject/NewProject";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#333232",
-  ...theme.typography.body2,
   padding: theme.spacing(1),
   color: "#B8B7B7",
 }));
@@ -17,6 +18,8 @@ export default function DashBoard() {
   return (
     <div>
       <Nav />
+      <NewProject/>
+      <NewTask/>
       <Box sx={{ width: "100%" }}>
         <Stack spacing={2}>
           <Item>

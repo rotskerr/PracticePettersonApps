@@ -40,6 +40,4 @@ export const TASKS = [
     newOrder: true,
     done: false
   },
-
-
 ];
