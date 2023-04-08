@@ -1,0 +1,18 @@
+.NewProjectBtn {
+  padding: 20px;
+  background-color: #333333;
+  color: #b8b7b7;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+.NewProjectBtn:hover {
+  background-color: #626262;
+}
+
+.Dialog,
+.DialogTitle,
+.DialogContent,
+.DialogActions {
+  background-color: #4a4646;
+  color: #b8b7b7;
+}

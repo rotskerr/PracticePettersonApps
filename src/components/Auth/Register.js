@@ -4,12 +4,25 @@ import "./Auth.css";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+
+const StyledTextField = styled(TextField)({
+  "& .MuiInputLabel-root": {
+    color: "#b8b7b7",
+  },
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      borderColor: "#b8b7b7",
+      color: "#b8b7b7",
+    },
+  },
+});
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -28,7 +41,7 @@ const Register = () => {
         {
           email: email,
           password: password,
-          name: name
+          name: name,
         },
         {
           headers: {
@@ -40,21 +53,21 @@ const Register = () => {
       .then((result) => {
         console.log(result);
         alert("Registration successful! Please login to continue.");
-        <Link to="/login">Login</Link>
+        <Link to="/login">Login</Link>;
       })
       .catch((error) => {
         console.log(error.response.data.message);
         alert(error.response.data.message);
       });
   };
-  
+
   return (
     <div>
       <form className="LoginBox">
         <Typography variant="h4" padding={3}>
           Register
         </Typography>
-        <TextField
+        <StyledTextField
           value={name}
           onChange={handleName}
           sx={{ input: { color: "#B8B7B7" } }}
@@ -63,7 +76,7 @@ const Register = () => {
           placeholder="name"
           margin="normal"
         />
-        <TextField
+        <StyledTextField
           value={email}
           onChange={handleEmail}
           sx={{ input: { color: "#B8B7B7" } }}
@@ -72,7 +85,7 @@ const Register = () => {
           placeholder="email"
           margin="normal"
         />
-        <TextField
+        <StyledTextField
           value={password}
           onChange={handlePassword}
           sx={{ input: { color: "#B8B7B7" } }}
@@ -89,7 +102,9 @@ const Register = () => {
         >
           Register
         </Button>
-        <Button sx={{ marginTop: 3, color: "#B8B7B7" }}><Link to="/login">Login</Link></Button>
+        <Button sx={{ marginTop: 3, color: "#B8B7B7" }}>
+          <Link to="/login">Login</Link>
+        </Button>
       </form>
     </div>
   );

@@ -3,7 +3,19 @@ import React, { useState } from "react";
 import "./Auth.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { styled } from "@mui/material/styles";
 
+const StyledTextField = styled(TextField)({
+  "& .MuiInputLabel-root": {
+    color: "#b8b7b7",
+  },
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      color: "#b8b7b7",
+      borderColor: "#b8b7b7",
+    },
+  },
+});
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,7 +61,7 @@ const Login = () => {
         <Typography variant="h4" padding={3}>
           Login
         </Typography>
-        <TextField
+        <StyledTextField
           value={email}
           onChange={handleEmail}
           sx={{ input: { color: "#B8B7B7" } }}
@@ -58,7 +70,7 @@ const Login = () => {
           placeholder="email"
           margin="normal"
         />
-        <TextField
+        <StyledTextField
           value={password}
           onChange={handlePassword}
           sx={{ input: { color: "#B8B7B7" } }}

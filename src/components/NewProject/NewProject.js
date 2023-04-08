@@ -1,5 +1,25 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Button } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import TextField from "@mui/material/TextField";
+import { styled } from "@mui/material/styles";
+import "./NewProject.css";
+
+const StyledTextField = styled(TextField)({
+  "& .MuiInputLabel-root": {
+    color: "#b8b7b7",
+  },
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      color: "#b8b7b7",
+      borderColor: "#b8b7b7",
+    },
+  },
+});
 
 const NewProject = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,55 +37,73 @@ const NewProject = () => {
 
   const handleSubmit = () => {
     const data = { title, description, type };
-    axios.post("https://practicepetersonapps.herokuapp.com/api/project/store", data)
-      .then(response => {
+    axios
+      .post(
+        "https://practicepetersonapps.herokuapp.com/api/project/store",
+        data
+      )
+      .then((response) => {
         console.log("New project created:", response.data);
         handleClose();
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error creating new project:", error);
       });
   };
 
   return (
     <div>
-      <button onClick={handleOpen}>Create New Project</button>
-      {isOpen && (
-        <dialog open onClose={handleClose}>
-          <h2>Create New Project</h2>
-          <form>
-            <label>
-              Title:
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </label>
-            <br />
-            <label>
-              Description:
-              <input
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </label>
-            <br />
-            <label>
-              Type:
-              <input
-                type="text"
-                value={type}
-                onChange={(e) => setType(e.target.value)}
-              />
-            </label>
-            <br />
-            <button type="button" onClick={handleSubmit}>Create</button>
-            <button type="button" onClick={handleClose}>Cancel</button>
-          </form>
-        </dialog>
-      )}
+      <button className="NewProjectBtn" onClick={handleOpen}>
+        Create New Project
+      </button>
+      <Dialog className="Dialog" open={isOpen} onClose={handleClose}>
+        <DialogTitle className="Dialog">Create New Project</DialogTitle>
+        <DialogContent className="DialogContent">
+          <StyledTextField
+            InputProps={{ style: { color: "#B8B7B7" } }}
+            autoFocus
+            margin="normal"
+            label="Title"
+            type="text"
+            fullWidth
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <StyledTextField
+            InputProps={{ style: { color: "#B8B7B7" } }}
+            margin="normal"
+            label="Description"
+            type="text"
+            fullWidth
+            multiline
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <StyledTextField
+            InputProps={{ style: { color: "#B8B7B7" } }}
+            margin="normal"
+            label="Type"
+            type="text"
+            fullWidth
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions className="DialogActions">
+          <Button
+            sx={{ backgroundColor: "#333233", color: "#b8b7b7" }}
+            onClick={handleClose}
+          >
+            Cancel
+          </Button>
+          <Button
+            sx={{ backgroundColor: "#333233", color: "#b8b7b7" }}
+            onClick={handleSubmit}
+          >
+            Create
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

@@ -1,7 +1,29 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  TextField,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import DialogActions from "@mui/material/DialogActions";
+import "./NewTask.css";
 
-function Form() {
+const StyledTextField = styled(TextField)({
+  "& .MuiInputLabel-root": {
+    color: "#b8b7b7",
+  },
+  "& .MuiOutlinedInput-root": {
+    "&.Mui-focused fieldset": {
+      borderColor: "#b8b7b7",
+      color: "#b8b7b7",
+    },
+  },
+});
+
+function NewTask() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -46,77 +68,100 @@ function Form() {
 
   return (
     <div>
-      <button onClick={handleOpen}>Create New Task</button>
-      {isOpen && (
-        <dialog open onClose={handleClose}>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="description">Description:</label>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="type">Type:</label>
-          <input
-            type="text"
-            id="type"
-            name="type"
-            value={formData.type}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="hours_spend">Hours Spend:</label>
-          <input
-            type="number"
-            id="hours_spend"
-            name="hours_spend"
-            value={formData.hours_spend}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="project_id">Project ID:</label>
-          <input
-            type="number"
-            id="project_id"
-            name="project_id"
-            value={formData.project_id}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="user_id">User ID:</label>
-          <input
-            type="number"
-            id="user_id"
-            name="user_id"
-            value={formData.user_id}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit" onClick={handleSubmit}>Create</button>
-        <button type="button" onClick={handleClose}>Cancel</button>
-      </form>
-      </dialog>
-      )}
+      <button className="NewTaskBtn" onClick={handleOpen}>
+        Create New Task
+      </button>
+      <Dialog className="Dialog" open={isOpen} onClose={handleClose}>
+        <DialogTitle className="Dialog">Create New Task</DialogTitle>
+        <DialogContent className="DialogContent">
+          <form onSubmit={handleSubmit}>
+            {" "}
+            <StyledTextField
+              InputProps={{ style: { color: "#B8B7B7" } }}
+              margin="dense"
+              id="title"
+              label="Title"
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              fullWidth
+            />
+            <StyledTextField
+              InputProps={{ style: { color: "#B8B7B7" } }}
+              margin="dense"
+              id="description"
+              label="Description"
+              type="text"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              fullWidth
+              multiline
+            />
+            <StyledTextField
+              InputProps={{ style: { color: "#B8B7B7" } }}
+              margin="dense"
+              id="type"
+              label="Type"
+              type="text"
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              fullWidth
+            />
+            <StyledTextField
+              InputProps={{ style: { color: "#B8B7B7" } }}
+              margin="dense"
+              id="hours_spend"
+              label="Hours Spend"
+              type="number"
+              name="hours_spend"
+              value={formData.hours_spend}
+              onChange={handleChange}
+              fullWidth
+            />
+            <StyledTextField
+              InputProps={{ style: { color: "#B8B7B7" } }}
+              margin="dense"
+              id="project_id"
+              label="Project ID"
+              type="number"
+              name="project_id"
+              value={formData.project_id}
+              onChange={handleChange}
+              fullWidth
+            />
+            <StyledTextField
+              InputProps={{ style: { color: "#B8B7B7" } }}
+              margin="dense"
+              id="user_id"
+              label="User ID"
+              type="number"
+              name="user_id"
+              value={formData.user_id}
+              onChange={handleChange}
+              fullWidth
+            />
+            <DialogActions className="DialogActions">
+              <Button
+                onClick={handleClose}
+                sx={{ backgroundColor: "#333233", color: "#b8b7b7" }}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                sx={{ backgroundColor: "#333233", color: "#b8b7b7" }}
+              >
+                Create
+              </Button>
+            </DialogActions>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
 
-export default Form;
+export default NewTask;
