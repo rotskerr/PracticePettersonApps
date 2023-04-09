@@ -7,6 +7,8 @@ import { styled } from "@mui/material/styles";
 import "./style.css";
 import NewTask from "../NewTask/NewTask";
 import NewProject from "../NewProject/NewProject";
+import ProjectSelect from "../ProjectSelect/ProjectSelect";
+import { useState, useEffect } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#333232",
@@ -15,11 +17,39 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function DashBoard() {
+  const [project, setProject] = useState({});
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
+
+  useEffect(() => {
+    if (selectedProjectId) {
+      fetch(`https://practicepetersonapps.herokuapp.com/api/project/show/id`)
+        .then((response) => response.json())
+        .then((data) => setProject(data));
+    }
+  }, [selectedProjectId]);
+
+  const handleProjectSelect = (projectId) => {
+    setSelectedProjectId(projectId);
+  };
+
   return (
     <div>
       <Nav />
-      <NewProject/>
-      <NewTask/>
+      <div className="ControlPanel">
+        <ProjectSelect onSelect={handleProjectSelect} />
+        <NewProject />
+        <NewTask />
+      </div>
+
+      <div>
+        {project && (
+          <>
+            <h1>{project.title}</h1>
+            <p>{project.description}</p>
+          </>
+        )}
+      </div>
+
       <Box sx={{ width: "100%" }}>
         <Stack spacing={2}>
           <Item>

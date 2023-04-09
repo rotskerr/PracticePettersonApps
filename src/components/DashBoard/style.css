@@ -9,3 +9,7 @@
 button {
   margin-bottom: 10px;
 }
+.ControlPanel{
+  display: flex;
+  justify-content: space-around;
+}

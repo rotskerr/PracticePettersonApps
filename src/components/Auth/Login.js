@@ -46,9 +46,7 @@ const Login = () => {
       )
       .then((result) => {
         console.log(result);
-        // зберігаємо токен користувача в localStorage
         localStorage.setItem("token", result.data.token);
-        // переходимо на домашню сторінку
         navigate("/");
       })
       .catch((error) => {

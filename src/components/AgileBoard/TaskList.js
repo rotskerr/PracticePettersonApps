@@ -53,7 +53,6 @@ class TaskList extends React.Component {
 
   render() {
     const { tasks } = this.state;
-    console.log("tasks", tasks);
     let pending = tasks.filter((data) => data.status === "In Progress");
     let done = tasks.filter((data) => data.status === "Completed");
     let newOrder = tasks.filter((data) => data.status === "New Order");

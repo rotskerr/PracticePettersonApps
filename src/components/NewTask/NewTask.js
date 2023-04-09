@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   Button,
@@ -7,6 +7,8 @@ import {
   DialogContent,
   TextField,
 } from "@mui/material";
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+
 import { styled } from "@mui/material/styles";
 import DialogActions from "@mui/material/DialogActions";
 import "./NewTask.css";
@@ -17,13 +19,13 @@ const StyledTextField = styled(TextField)({
   },
   "& .MuiOutlinedInput-root": {
     "&.Mui-focused fieldset": {
-      borderColor: "#b8b7b7",
       color: "#b8b7b7",
+      borderColor: "#b8b7b7",
     },
   },
 });
 
-function NewTask() {
+function NewTask(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -64,6 +66,38 @@ function NewTask() {
         console.error(error);
         // Handle the error, if needed
       });
+  };
+
+  const [projects, setProjects] = useState([]);
+  const [selectedProject, setSelectedProject] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("https://practicepetersonapps.herokuapp.com/api/project/index")
+      .then((response) => {
+        setProjects(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const handleSelectChange = (event) => {
+    setSelectedProject(event.target.value);
+  };
+
+  const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("https://practicepetersonapps.herokuapp.com/api/user/index")
+      .then((response) => setUsers(response.data))
+      .catch((error) => console.error(error));
+  }, []);
+
+  const handleUserSelectChange = (event) => {
+    setSelectedUser(event.target.value);
   };
 
   return (
@@ -110,39 +144,35 @@ function NewTask() {
               onChange={handleChange}
               fullWidth
             />
-            <StyledTextField
-              InputProps={{ style: { color: "#B8B7B7" } }}
-              margin="dense"
-              id="hours_spend"
-              label="Hours Spend"
-              type="number"
-              name="hours_spend"
-              value={formData.hours_spend}
-              onChange={handleChange}
-              fullWidth
-            />
-            <StyledTextField
-              InputProps={{ style: { color: "#B8B7B7" } }}
-              margin="dense"
-              id="project_id"
-              label="Project ID"
-              type="number"
-              name="project_id"
-              value={formData.project_id}
-              onChange={handleChange}
-              fullWidth
-            />
-            <StyledTextField
-              InputProps={{ style: { color: "#B8B7B7" } }}
-              margin="dense"
-              id="user_id"
-              label="User ID"
-              type="number"
-              name="user_id"
-              value={formData.user_id}
-              onChange={handleChange}
-              fullWidth
-            />
+            <FormControl fullWidth margin="normal">
+              <InputLabel sx={{ color: "#b8b7b7" }}>Projects</InputLabel>
+              <Select
+                sx={{ color: "#b8b7b7", borderColor: "#b8b7b7" }}
+                value={selectedProject}
+                onChange={handleSelectChange}
+              >
+                {projects.map((project) => (
+                  <MenuItem key={project.id} value={project.id}>
+                    {project.title}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl fullWidth margin="normal">
+              <InputLabel id="user-select-label">User</InputLabel>
+              <Select
+                labelId="user-select-label"
+                id="user-select"
+                value={selectedUser}
+                onChange={handleUserSelectChange}
+              >
+                {users.map((user) => (
+                  <MenuItem key={user.id} value={user.id}>
+                    {user.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
             <DialogActions className="DialogActions">
               <Button
                 onClick={handleClose}
