@@ -9,6 +9,7 @@ import NewTask from "../NewTask/NewTask";
 import NewProject from "../NewProject/NewProject";
 import ProjectSelect from "../ProjectSelect/ProjectSelect";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#333232",
@@ -22,7 +23,7 @@ export default function DashBoard() {
 
   useEffect(() => {
     if (selectedProjectId) {
-      fetch(`https://practicepetersonapps.herokuapp.com/api/project/show/id`)
+      fetch(`https://practicepetersonapps.herokuapp.com/api/project/show/1`)
         .then((response) => response.json())
         .then((data) => setProject(data));
     }
@@ -32,12 +33,31 @@ export default function DashBoard() {
     setSelectedProjectId(projectId);
   };
 
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://practicepetersonapps.herokuapp.com/api/project/index")
+      .then((response) => {
+        setProjects(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div>
       <Nav />
       <div className="ControlPanel">
-        <ProjectSelect onSelect={handleProjectSelect} />
-        <NewProject />
+        <ProjectSelect projectList={projects} onSelect={handleProjectSelect} />
+        <NewProject
+          onCreate={(project) => {
+            setProjects((prev) => {
+              return [...prev, project];
+            });
+          }}
+        />
         <NewTask />
       </div>
 
@@ -50,7 +70,7 @@ export default function DashBoard() {
         )}
       </div>
 
-      <Box sx={{ width: "100%" }}>
+      <Box className="taskContainer" sx={{ width: "90%" }}>
         <Stack spacing={2}>
           <Item>
             <ul className="item">

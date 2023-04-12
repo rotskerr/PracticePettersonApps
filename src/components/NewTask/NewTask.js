@@ -60,11 +60,9 @@ function NewTask(props) {
       )
       .then((response) => {
         console.log(response);
-        // Do something with the response data, if needed
       })
       .catch((error) => {
         console.error(error);
-        // Handle the error, if needed
       });
   };
 
@@ -86,19 +84,6 @@ function NewTask(props) {
     setSelectedProject(event.target.value);
   };
 
-  const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("https://practicepetersonapps.herokuapp.com/api/user/index")
-      .then((response) => setUsers(response.data))
-      .catch((error) => console.error(error));
-  }, []);
-
-  const handleUserSelectChange = (event) => {
-    setSelectedUser(event.target.value);
-  };
 
   return (
     <div>
@@ -154,21 +139,6 @@ function NewTask(props) {
                 {projects.map((project) => (
                   <MenuItem key={project.id} value={project.id}>
                     {project.title}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl fullWidth margin="normal">
-              <InputLabel id="user-select-label">User</InputLabel>
-              <Select
-                labelId="user-select-label"
-                id="user-select"
-                value={selectedUser}
-                onChange={handleUserSelectChange}
-              >
-                {users.map((user) => (
-                  <MenuItem key={user.id} value={user.id}>
-                    {user.name}
                   </MenuItem>
                 ))}
               </Select>

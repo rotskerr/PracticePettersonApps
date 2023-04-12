@@ -1,35 +1,23 @@
-import { Button, Avatar, Box, Typography } from "@mui/material";
+import { Button, Box, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
-const UserInfo = ({ id }) => {
+const UserInfo = () => {
   const [user, setUser] = useState({});
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    setUser(null);
   };
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedUser = localStorage.getItem("user");
 
     if (storedUser) {
-      setUser(storedUser);
-    } else {
-      axios
-        .get(`https://practicepetersonapps.herokuapp.com/api/user/show/id`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-        .then((response) => {
-          localStorage.setItem("user", JSON.stringify(response.data));
-          setUser(response.data);
-        })
-        .catch((error) => console.error(error));
+      setUser(JSON.stringify(storedUser));
     }
-  }, [id]);
+  }, []);
 
   return (
     <div>

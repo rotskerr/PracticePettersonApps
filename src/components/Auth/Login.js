@@ -16,6 +16,7 @@ const StyledTextField = styled(TextField)({
     },
   },
 });
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,6 +25,7 @@ const Login = () => {
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
@@ -46,6 +48,7 @@ const Login = () => {
       )
       .then((result) => {
         console.log(result);
+        localStorage.setItem("user", JSON.stringify(result.data.user));
         localStorage.setItem("token", result.data.token);
         navigate("/");
       })
@@ -53,6 +56,7 @@ const Login = () => {
         console.log(error);
       });
   };
+
   return (
     <div>
       <form className="LoginBox">

@@ -21,7 +21,7 @@ const StyledTextField = styled(TextField)({
   },
 });
 
-const NewProject = () => {
+const NewProject = ({ onCreate }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -44,6 +44,7 @@ const NewProject = () => {
       )
       .then((response) => {
         console.log("New project created:", response.data);
+        onCreate(response.data);
         handleClose();
       })
       .catch((error) => {
