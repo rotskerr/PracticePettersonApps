@@ -7,14 +7,16 @@ import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Nav from "../Nav/Nav";
+import team from "./team.jpg";
+import "./style.css";
 
 function Copyright() {
   return (
     <div>
       <Typography variant="body2" color="#B8B7B7" align="center">
         {"Copyright © "}
-        <Link color="inherit" href="/">
-          Your Website
+        <Link color="inherit" target="_blank" href="https://pettersonapps.com/">
+          PettersonApps
         </Link>{" "}
         {new Date().getFullYear()}
         {"."}
@@ -22,8 +24,6 @@ function Copyright() {
     </div>
   );
 }
-
-
 
 const theme = createTheme();
 
@@ -66,29 +66,30 @@ export default function HomePage() {
               </Stack>
             </Container>
           </Box>
-          <Container sx={{ py: 8 }} maxWidth="md">
+          <Container  sx={{ py: 10 }} maxWidth="md">
             {/* End hero unit */}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
-            iure, aperiam culpa officia temporibus mollitia eveniet quidem optio
-            alias atque illum natus ad, sunt nisi eius dolore eligendi maiores
-            minus.
+            <Typography variant="h5" align="center" color="#B8B7B7" paragraph>
+              This software product was developed during the production and
+              technological practice at PettersonApps by two students of the
+              KN-43 group Vladyslav Voychyshyn and Maksym Honak
+            </Typography>
           </Container>
+          <img className="Team"  src={team} alt="team" />
+
         </main>
         {/* Footer */}
         <Box
           sx={{ bgcolor: "#3f3e3e", p: 6, color: "#B8B7B7" }}
           component="footer"
         >
-          <Typography variant="h6" align="center" gutterBottom>
-            Footer
-          </Typography>
+          
           <Typography
             variant="subtitle1"
             align="center"
             color="#B8B7B7"
             component="p"
           >
-            Something here to give the footer a purpose!
+            This software product was developed during the production and technological practice 
           </Typography>
           <Copyright />
         </Box>

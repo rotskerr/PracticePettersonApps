@@ -23,7 +23,7 @@ const Nav = () => {
     <div>
       <nav>
         <Link to="/">
-          <img src={logo}  alt="logo" />
+          <img className="logo" src={logo}  alt="logo" />
         </Link>
         <ul className="nav-links">
           <Link className="NavListLinks" to="/dashboard">
