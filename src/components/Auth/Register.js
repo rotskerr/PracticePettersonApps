@@ -52,12 +52,11 @@ const Register = () => {
       )
       .then((result) => {
         console.log(result);
-        alert("Registration successful! Please login to continue.");
         <Link to="/login">Login</Link>;
       })
       .catch((error) => {
         console.log(error.response.data.message);
-        alert(error.response.data.message);
+        alert("wroang email or password")
       });
   };
 

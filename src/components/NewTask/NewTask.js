@@ -8,10 +8,11 @@ import {
   TextField,
 } from "@mui/material";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
-
 import { styled } from "@mui/material/styles";
 import DialogActions from "@mui/material/DialogActions";
 import "./NewTask.css";
+
+const token = localStorage.getItem("token");
 
 const StyledTextField = styled(TextField)({
   "& .MuiInputLabel-root": {
@@ -25,7 +26,7 @@ const StyledTextField = styled(TextField)({
   },
 });
 
-function NewTask(props) {
+const NewTask = ({ onCreate, projects }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -35,15 +36,15 @@ function NewTask(props) {
   const handleClose = () => {
     setIsOpen(false);
   };
-
-  const [formData, setFormData] = useState({
+  const defaultValues = {
     description: "",
     title: "",
     type: "",
-    stage: 0,
     hours_spend: 0,
-    project_id: 0,
-    user_id: 0,
+    project_id: null,
+  };
+  const [formData, setFormData] = useState({
+    ...defaultValues,
   });
 
   const handleChange = (e) => {
@@ -56,35 +57,37 @@ function NewTask(props) {
     axios
       .post(
         "https://practicepetersonapps.herokuapp.com/api/note/store",
-        formData
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((response) => {
+        setSelectedProject(response.data);
+        onCreate(response.data);
         console.log(response);
       })
       .catch((error) => {
+        alert("there is some error");
         console.error(error);
       });
   };
 
-  const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("https://practicepetersonapps.herokuapp.com/api/project/index")
-      .then((response) => {
-        setProjects(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   const handleSelectChange = (event) => {
     setSelectedProject(event.target.value);
+    setFormData({ ...formData, project_id: event.target.value });
   };
+  console.log(projects);
 
-
+  useEffect(() => {
+    if (!isOpen) setFormData(defaultValues);
+  }, [isOpen]);
   return (
     <div>
       <button className="NewTaskBtn" onClick={handleOpen}>
@@ -94,7 +97,7 @@ function NewTask(props) {
         <DialogTitle className="Dialog">Create New Task</DialogTitle>
         <DialogContent className="DialogContent">
           <form onSubmit={handleSubmit}>
-            {" "}
+            {""}
             <StyledTextField
               InputProps={{ style: { color: "#B8B7B7" } }}
               margin="dense"
@@ -153,6 +156,7 @@ function NewTask(props) {
               <Button
                 type="submit"
                 sx={{ backgroundColor: "#333233", color: "#b8b7b7" }}
+                onClick={handleClose}
               >
                 Create
               </Button>
@@ -162,6 +166,6 @@ function NewTask(props) {
       </Dialog>
     </div>
   );
-}
+};
 
 export default NewTask;

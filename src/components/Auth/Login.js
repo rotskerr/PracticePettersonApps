@@ -31,7 +31,6 @@ const Login = () => {
   };
 
   const handleApi = () => {
-    console.log({ email, password });
     axios
       .post(
         "https://practicepetersonapps.herokuapp.com/api/login",
@@ -47,13 +46,15 @@ const Login = () => {
         }
       )
       .then((result) => {
+        localStorage.setItem("user", + result.data.user);
+        localStorage.setItem("token", "Bearer " + result.data.authorisation.token);
         console.log(result);
-        localStorage.setItem("user", JSON.stringify(result.data.user));
-        localStorage.setItem("token", result.data.token);
         navigate("/");
       })
       .catch((error) => {
+      alert("something went wroang, plese try again  .")
         console.log(error);
+  
       });
   };
 

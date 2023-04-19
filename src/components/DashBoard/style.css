@@ -1,19 +1,50 @@
 .item {
+  width: 70%;
+  margin: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
   list-style: none;
-  
+  margin-bottom: 15px;
+  padding: 20px;
+  text-align: center;
+  justify-content: space-between;
 }
 
-button {
-  margin-bottom: 10px;
-}
-.ControlPanel{
+.ControlPanel {
+  padding: 20px;
   display: flex;
   justify-content: space-around;
 }
-.taskContainer{
+.taskContainer {
   margin: auto;
+}
+
+.Dialog,
+.DialogTitle,
+.DialogContent,
+.DialogActions {
+  background-color: #4a4646;
+  color: #b8b7b7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.InfoBtn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: #b8b7b7;
+  background-color: transparent;
+}
+.InfoBtn:hover {
+  background-color: #4a4646;
+}
+li{
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  justify-content: space-between;
+  width: 100%;
 }

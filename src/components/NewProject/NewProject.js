@@ -26,12 +26,16 @@ const NewProject = ({ onCreate }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("");
+  const token = localStorage.getItem("token");
 
   const handleOpen = () => {
     setIsOpen(true);
   };
 
   const handleClose = () => {
+    setTitle("");
+    setDescription("");
+    setType("");
     setIsOpen(false);
   };
 
@@ -40,11 +44,19 @@ const NewProject = ({ onCreate }) => {
     axios
       .post(
         "https://practicepetersonapps.herokuapp.com/api/project/store",
-        data
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       )
       .then((response) => {
         console.log("New project created:", response.data);
         onCreate(response.data);
+        setTitle("");
+        setDescription("");
+        setType("");
         handleClose();
       })
       .catch((error) => {

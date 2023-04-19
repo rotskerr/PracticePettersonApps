@@ -7,16 +7,30 @@ const UserInfo = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    setUser(null);
+    setUser({});
   };
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
+    const fetchUser = async () => {
+      try {
+        const response = await fetch("https://practicepetersonapps.herokuapp.com/api/me", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
 
-    if (storedUser) {
-      setUser(JSON.stringify(storedUser));
-    }
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+
+        const userData = await response.json();
+        setUser(userData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUser();
   }, []);
 
   return (
@@ -28,6 +42,12 @@ const UserInfo = () => {
         </Box>
       </Box>
       <Button>
+      <Link to="/login">
+          Login
+        </Link>
+      </Button>
+      <Button>
+
         <Link to="/login" onClick={handleLogout}>
           Log Out
         </Link>

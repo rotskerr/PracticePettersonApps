@@ -26,13 +26,12 @@ const Nav = () => {
           <img src={logo}  alt="logo" />
         </Link>
         <ul className="nav-links">
-          <Link to="/dashboard">
+          <Link className="NavListLinks" to="/dashboard">
             <li>Dashboard</li>
           </Link>
-          <Link to="/agileboard">
+          <Link className="NavListLinks" to="/agileboard">
             <li>Agileboard</li>
           </Link>
-          <li>
             <div>
               <button className="UserInfoBtn" aria-describedby={id} type="button" onClick={handleClick}>
                 User Info
@@ -47,7 +46,6 @@ const Nav = () => {
                 )}
               </Popper>
             </div>
-          </li>
         </ul>
       </nav>
     </div>

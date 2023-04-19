@@ -11,8 +11,16 @@
 
 .Dialog,
 .DialogTitle,
-.DialogContent,
-.DialogActions {
+.DialogContent {
+  display: flex;
+  flex-direction: column;
+  background-color: #4a4646;
+  color: #b8b7b7;
+}
+.DialogActions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   background-color: #4a4646;
   color: #b8b7b7;
 }
