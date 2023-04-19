@@ -117,6 +117,7 @@ export default function DashBoard() {
         );
       })
       .catch((error) => {
+        alert("error deleting project")
         console.log(error);
       });
   };
@@ -137,6 +138,7 @@ export default function DashBoard() {
         handleCloseTaskAlert();
       })
       .catch((error) => {
+        alert("error deleting task")
         console.log(error);
       });
   };

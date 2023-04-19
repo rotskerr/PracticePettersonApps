@@ -95,6 +95,7 @@ const AgileBoard = () => {
         );
       })
       .catch((error) => {
+        alert("eroor in deleting project")
         console.log(error);
       });
   };

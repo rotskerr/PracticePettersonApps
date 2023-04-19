@@ -50,6 +50,7 @@ const NewTaskList = ({ tasks, setTasks }) => {
         handleCloseTaskAlert();
       })
       .catch((error) => {
+        alert("error deleting task")
         console.log(error);
       });
   };

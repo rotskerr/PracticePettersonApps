@@ -60,6 +60,7 @@ const NewProject = ({ onCreate }) => {
         handleClose();
       })
       .catch((error) => {
+        alert("Error creating new project");
         console.error("Error creating new project:", error);
       });
   };
