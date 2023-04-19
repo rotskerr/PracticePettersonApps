@@ -60,9 +60,6 @@ export default function HomePage() {
                 spacing={2}
                 justifyContent="center"
               >
-                <Button variant="contained" color="success">
-                  Main call to action
-                </Button>
               </Stack>
             </Container>
           </Box>
