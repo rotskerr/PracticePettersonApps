@@ -51,9 +51,7 @@ export default function HomePage() {
               >
                 Petterson Web Youtrack
               </Typography>
-              <Typography variant="h5" align="center" color="#B8B7B7" paragraph>
-                description of Petterson Web Youtrack
-              </Typography>
+              
               <Stack
                 sx={{ pt: 4 }}
                 direction="row"
